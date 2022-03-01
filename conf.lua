@@ -2,13 +2,18 @@
 
 config = {
     display = {
-        width = 1600,
-        height = 900
+        width = 640*2,
+        height = 360*2
     },
     canvas = {
         width = 640,
         height = 360
     }
+}
+
+config.scale = {
+    x = math.floor(config.display.width / config.canvas.width),
+    y = math.floor(config.display.height / config.canvas.height)
 }
 
 function love.conf(conf)

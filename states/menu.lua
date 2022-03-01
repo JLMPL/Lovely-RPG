@@ -71,12 +71,12 @@ end
 
 function menu_state:draw_overlay()
     love.graphics.setFont(res.fonts.title)
-    love.graphics.print("Lovely RPG", 10, love.graphics.getHeight() / 4)
+    love.graphics.print("Lovely RPG", 10, config.canvas.height / 4)
 
     for i = 1, #self.options do
         love.graphics.draw(
             self.options[i],
             10,
-            (love.graphics.getHeight() / 2) + self.options[i]:getHeight() * (i-1))
+            (config.canvas.height / 2) + self.options[i]:getHeight() * (i-1))
     end
 end

@@ -44,24 +44,51 @@ end
 function love.draw()
     love.graphics.setCanvas(scene_canvas)
     love.graphics.clear(0,0,0,1)
+    love.graphics.setColor(1,1,1,1)
     love.graphics.setBlendMode("alpha")
     love.graphics.push()
     love.graphics.translate(-camera.x, -camera.y)
     state:draw_scene()
     love.graphics.pop()
+    state:draw_overlay()
 
     love.graphics.setCanvas()
     love.graphics.clear(0,0,0,1)
+    love.graphics.setColor(1,1,1,1)
     love.graphics.setBlendMode("alpha", "premultiplied")
-    love.graphics.draw(scene_canvas, 0,0, 0, 1920/640, 1080/360)
-    
-    love.graphics.setBlendMode("alpha")
-    state:draw_overlay()
+    love.graphics.draw(scene_canvas, 0,0, 0, config.scale.x, config.scale.y)
 end
 
 --[[
 
-TODO:
-YSort Rendering - should be super easy too
+TODO: (Limits too)
+NPCs (Can't attack them, no routine)
+Dialogue (Monologue -> Accept, Decline)?
+Trading (Buy sell item by item basis)
+Quests (Mostly just text entries, progress requires items)
+Items (Named, Coded, icon)
+Mobs (Simple AI, Weak to different things: fire, ice, slashing)
+Combat (Single attack, types of weapons)
+Stats (Stats as requirements to equip stuff)
+Weapons (Different types of damage, Ranged weapons exiting)
+Magic (Fire, Ice, Lightning... dunno)
+
+______________________________________
+| Inventory | Stats | Magic | Quests |
+|___________|       |_______|________|
+|                                    |
+|  Health: 5/12                      |
+|  Magicka: 7/12                     |
+|                                    |
+|  Strength: 4                       |
+|  Dexterity: 5                      |
+|  Intelligence: 4                   |
+|                                    |
+|  Melee Weapons: 30%                |
+|  Ranged Weapons: 20%               |
+|  Fire Magic: 40%                   |
+|  (...)                             |
+|                                    |
+|____________________________________|
 
 ]]--
