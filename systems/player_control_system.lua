@@ -9,7 +9,7 @@ function player_control_system.new()
 
     function sys:key_per_ent(ent, key)
         if key == 'tab' then
-            ent.is_busy = not ent.is_busy
+            -- ent.is_busy = not ent.is_busy
 
             if ent.is_busy then
                 ent.anim:set('elf_idle')

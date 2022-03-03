@@ -37,7 +37,6 @@ end
 
 function love.update(dt)
     perform_state_swtich()
-
     state:update(dt)
 end
 
@@ -61,17 +60,20 @@ end
 
 --[[
 
-TODO: (Limits too)
-NPCs (Can't attack them, no routine)
-Dialogue (Monologue -> Accept, Decline)?
-Trading (Buy sell item by item basis)
-Quests (Mostly just text entries, progress requires items)
-Items (Named, Coded, icon)
-Mobs (Simple AI, Weak to different things: fire, ice, slashing)
-Combat (Single attack, types of weapons)
-Stats (Stats as requirements to equip stuff)
-Weapons (Different types of damage, Ranged weapons exiting)
-Magic (Fire, Ice, Lightning... dunno)
+LITTLE TODO:
+    Controller remember?
+
+BIG TODO: (Limits too)
+    NPCs     (Can't attack them, no routine)
+    Dialogue (Monologue -> Accept, Decline)?
+    Trading  (Buy sell item by item basis)
+    Quests   (Mostly just text entries, progress requires items)
+    Items    (Named, Coded, icon)
+    Mobs     (Simple AI, Weak to different things: fire, ice, slashing)
+    Combat   (Single attack, types of weapons)
+    Stats    (Stats as requirements to equip stuff)
+    Weapons  (Different types of damage, Ranged weapons exiting)
+    Magic    (Fire, Ice, Lightning... dunno)
 
 ______________________________________
 | Inventory | Stats | Magic | Quests |

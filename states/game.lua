@@ -4,6 +4,7 @@ require 'systems/draw_system'
 require 'systems/player_control_system'
 require 'world_loader'
 require 'ui/hud'
+require 'ui/pause_menu'
 
 local sti = require 'libs/sti'
 local vec2 = require 'libs/vector'
@@ -44,17 +45,26 @@ end
 
 function game_state:on_keypressed(key)
     if key == 'escape' then
-        -- self.switch_state('menu')
         self.paused = not self.paused
+
+        if self.paused then
+            pause_menu:show_on_tab(5)
+        end
     end
 
-    if key == 'return' and self.paused then
-        self.switch_state('menu')
+    if key == 'tab' then
+        self.paused = not self.paused
+
+        if self.paused then
+            pause_menu:show_on_tab(1)
+        end
     end
 
     if not self.paused then
         self.player_sys:on_keypressed(key)
     end
+
+    pause_menu:on_keypressed(key)
 end
 
 function game_state:update(dt)
@@ -74,9 +84,10 @@ function game_state:draw_scene()
         end
     end
 
-    love.graphics.draw(res.images.tree, 300, 300)
+    -- love.graphics.draw(res.images.tree, 300, 300)
     self.draw_sys:sort_entities()
     self.world:update(1.0, run_in_draw_filter)
+
 
 end
 
@@ -84,11 +95,6 @@ function game_state:draw_overlay()
     if not self.paused then
         hud:draw()
     else
-        love.graphics.setColor(0,0,0,0.5)
-        love.graphics.rectangle('fill', 0,0, config.canvas.width, config.canvas.height)
-
-        love.graphics.setColor(1,1,1,1)
-        love.graphics.setNewFont(16)
-        love.graphics.printf("Game paused", (config.canvas.width/2) -100, config.canvas.height*0.3, 200, 'center')
+        pause_menu:draw()
     end
 end

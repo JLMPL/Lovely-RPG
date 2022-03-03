@@ -18,6 +18,9 @@ res.images.elf_boom = load_image("elf_boom.png")
 res.images.elf_idle = load_image("elf_idle.png")
 res.images.elf_walk = load_image("elf_walk.png")
 
+--ui
+res.images.inv_select = load_image("inv_select.png")
+
 res.images.test_map = load_image("grass.png")
 res.images.heart = load_image("heart_small.png")
 res.images.tree = load_image("tree.png")
@@ -65,6 +68,6 @@ function res.anims.get(name)
 end
 
 res.fonts = {}
-res.fonts.menu = love.graphics.newFont(fonts_dir .. "NotoSans-Regular.ttf", 12)
+res.fonts.menu = love.graphics.newFont(fonts_dir .. "CompassPro.ttf", 16)
 res.fonts.title = love.graphics.newFont(fonts_dir .. "NotoSans-Regular.ttf", 30)
 

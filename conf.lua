@@ -2,8 +2,8 @@
 
 config = {
     display = {
-        width = 640*2,
-        height = 360*2
+        width = 640 * 3,
+        height = 360 * 3
     },
     canvas = {
         width = 640,

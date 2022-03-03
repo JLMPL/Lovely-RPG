@@ -19,14 +19,14 @@ function draw_system.new()
         love.graphics.setColor(0,0,0,0.5)
         love.graphics.ellipse("fill", ent.pos.x, ent.pos.y, 16, 6)
 
-        -- love.graphics.setColor(1,1,1,1)
-        -- ent.anim.anim:draw(ent.anim.image, ent.pos.x - ent.anim.offset.x, ent.pos.y - ent.anim.offset.y, 0, 1,1)
-
         ent.anim:draw(ent.pos)
 
         if ent.display_name ~= nil then
-            love.graphics.setNewFont(10)
-            love.graphics.printf(ent.display_name, ent.pos.x - 50, ent.pos.y - ent.anim.offset.y * 0.8, 100, 'center')
+            love.graphics.setFont(res.fonts.menu)
+            love.graphics.setColor(0,0,0,1)
+            love.graphics.printf(ent.display_name, ent.pos.x - 49, (ent.pos.y + 1) - ent.anim.offset.y * 0.9, 100, 'center')
+            love.graphics.setColor(1,1,1,1)
+            love.graphics.printf(ent.display_name, ent.pos.x - 50, ent.pos.y - ent.anim.offset.y * 0.9, 100, 'center')
         end
     end
 
