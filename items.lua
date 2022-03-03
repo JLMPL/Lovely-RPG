@@ -28,5 +28,15 @@ items = {
         physical_defence = 5,
 
         value = 25
+    },
+    flimsy_bow = {
+        name = 'Flimsy Bow',
+        type = 'ranged',
+        icon = love.graphics.newImage("data/images/itm_bow.png"),
+
+        req_dexterity = 1,
+        physical_damage = 2,
+
+        value = 15
     }
 }

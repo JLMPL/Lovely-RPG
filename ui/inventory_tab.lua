@@ -1,27 +1,22 @@
 require 'items'
 
-local inventory_tab = {}
+local inventory_tab = {
+    player_inv = nil
+}
 
 local num_slots_x = 18
 local num_slots_y = 6
 
 local num_slots = num_slots_x * num_slots_y
 
-local selected = 1
-
 local type_strings = {
     melee = 'Melee Weapon',
     food = 'Consumable',
-    armor = 'Garment'
+    armor = 'Garment',
+    ranged = 'Ranged Weapon'
 }
 
-local inv = {
-    'rusty_dagger',
-    'health_potion',
-    'health_potion',
-    'health_potion',
-    'rusty_plate_armor'
-}
+local selected = 1
 
 function inventory_tab:on_keypressed(key)
     if key == 'up' then
@@ -62,17 +57,19 @@ function inventory_tab:draw()
 
     love.graphics.rectangle('fill', desc_pos.x, desc_pos.y, 18*32, 3*32)
 
-    love.graphics.setColor(1,1,1,1)
-    local selx = ((selected-1) % num_slots_x);
-    local sely = math.floor((selected-1) / num_slots_x)
-    love.graphics.draw(res.images.inv_select, 32 + selx * 32, 48 + sely * 32)
+    local inv = inventory_tab.player_inv
 
+    love.graphics.setColor(1,1,1,1)
 
     for i = 1, #inv do
         local ix = ((i-1) % num_slots_x);
         local iy = math.floor((i-1) / num_slots_x)
         love.graphics.draw(items[inv[i]].icon, 32 + ix * 32, 48 + iy * 32)
     end
+
+    local selx = ((selected-1) % num_slots_x);
+    local sely = math.floor((selected-1) / num_slots_x)
+    love.graphics.draw(res.images.inv_select, 32 + selx * 32, 48 + sely * 32)
 
     if inv[selected] ~= nil then
         local item = items[inv[selected]]
@@ -90,13 +87,18 @@ function inventory_tab:draw()
             optional_line('Strength Req: ' .. item.req_strength, {0.5,0.5,0.5})
         end
 
-        if item.type == 'melee' then
+        if item.req_dexterity ~= nil then
+            optional_line('Dexterity Req: ' .. item.req_dexterity, {0.5,0.5,0.5})
+
+        end
+
+        if item.physical_damage ~= nil then
             optional_line('Physical damage: ' .. item.physical_damage, {1,1,1})
         end
 
         if item.type == 'food' then
             if item.heal ~= nil then
-                optional_line('Restored health: ' .. item.heal, {0,1,0})
+                optional_line('Restored Health: ' .. item.heal, {0,1,0})
             end
         end
 

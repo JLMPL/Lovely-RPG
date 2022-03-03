@@ -59,3 +59,7 @@ function pause_menu:show_on_tab(tab)
     self.shown = true
     selected = tab
 end
+
+function pause_menu:set_player_inventory(inv)
+    tabs[1].player_inv = inv
+end

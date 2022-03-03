@@ -13,12 +13,22 @@ local type_loaders = {}
 type_loaders['player'] = function(state, ent)
     local pos = ent[2]
 
-    state.world:addEntity({
+    local player = state.world:addEntity({
         pos = vec2.new(pos.x, pos.y),
         anim = anim_component.new('elf_walk'),
         is_player = true,
-        is_busy = false
+        is_busy = false,
+        inventory = {
+            'rusty_dagger',
+            'health_potion',
+            'health_potion',
+            'health_potion',
+            'rusty_plate_armor',
+            'flimsy_bow'
+        }
     })
+
+    pause_menu:set_player_inventory(player.inventory)
 end
 
 type_loaders['npc'] = function(state, ent)
